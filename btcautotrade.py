@@ -5,7 +5,7 @@ import requests
 
 access = "go2Bjby3VE4tXv06MLNp9uyn1i9xxFxmtMU7kTYT"
 secret = "QA8XqaxJKPtgDdgLBIeFSbQfX3tkPMiogqvYmh1n"
-myToken = "xoxb-your-token"
+myToken = "xoxb-2014765120932-2023749955412-bORryRiMlXCWEmXzhUW7wZVn"
 
 def post_message(token, channel, text):
     """슬랙 메시지 전송"""
@@ -68,7 +68,7 @@ while True:
                     buy_result = upbit.buy_market_order("KRW-ETH", krw*0.9995)
                     post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
         else:
-            btc = get_balance("ETH")
+            eth = get_balance("ETH")
             if ETH > 0.002:
                 sell_result = upbit.sell_market_order("KRW-ETH", ETH*0.9995)
                 post_message(myToken,"#crypto", "ETH buy : " +str(sell_result))
