@@ -5,7 +5,7 @@ import requests
 
 access = "go2Bjby3VE4tXv06MLNp9uyn1i9xxFxmtMU7kTYT"
 secret = "QA8XqaxJKPtgDdgLBIeFSbQfX3tkPMiogqvYmh1n"
-myToken = "xoxb-2014765120932-2023749955412-bORryRiMlXCWEmXzhUW7wZVn"
+myToken = "xoxb-2014765120932-2023749955412-WlDSDCLH68q9FQzVwlYlcMlD"
 
 def post_message(token, channel, text):
     """슬랙 메시지 전송"""
