@@ -70,7 +70,7 @@ while True:
         else:
             eth = get_balance("ETH")
             if ETH > 0.002:
-                sell_result = upbit.sell_market_order("KRW-ETH", ETH*0.9995)
+                sell_result = upbit.sell_market_order("KRW-ETH", eth*0.9995)
                 post_message(myToken,"#jcoin", "ETH buy : " +str(sell_result))
         time.sleep(1)
     except Exception as e:
