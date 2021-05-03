@@ -7,7 +7,7 @@ import json
 
 access = "go2Bjby3VE4tXv06MLNp9uyn1i9xxFxmtMU7kTYT"
 secret = "QA8XqaxJKPtgDdgLBIeFSbQfX3tkPMiogqvYmh1n"
-myToken = "xoxb-2014765120932-2023749955412-WlDSDCLH68q9FQzVwlYlcMlD"
+myToken = "xoxb-2014765120932-2023749955412-ZwQOqfOQCL6XuAwakc1qoGtt"
 slack_webhook_url = "https://hooks.slack.com/services/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"
 
 
