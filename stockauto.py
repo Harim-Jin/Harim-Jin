@@ -286,6 +286,12 @@ if __name__ == '__main__':
                 if t_now.minute == 30 and 0 <= t_now.second <= 5: 
                     get_stock_balance('ALL')
                     time.sleep(5)
+            if current_price < :  # +5% : 일괄 매도
+                if sell_all() == True:
+                    dbgout('`sell_all() returned True -> self-destructed!`')
+            if current_price < :  # -5% : 일괄 매도
+                if sell_all() == True:
+                    dbgout('`sell_all() returned True -> self-destructed!`')
             if t_sell < t_now < t_exit:  # PM 03:15 ~ PM 03:20 : 일괄 매도
                 if sell_all() == True:
                     dbgout('`sell_all() returned True -> self-destructed!`')
