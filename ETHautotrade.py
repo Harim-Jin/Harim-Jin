@@ -73,11 +73,16 @@ while True:
                 if krw > 5000:
                     buy_result = upbit.buy_market_order("KRW-ETH", krw*0.9995)
                     post_message(myToken,"#eth", "ETH buy : " +str(buy_result))
+        elif:
+            eth = get_balance("ETH")
+            if eth + (eth*0.2) < current_price
+                sell_result = upbit.sell_market_order("KRW-ETH", eth*0.9995)
+                post_message(myToken,"#eth", "ETH sell : " +str(sell_result))
         else:
             eth = get_balance("ETH")
             if ETH > 0.002:
                 sell_result = upbit.sell_market_order("KRW-ETH", eth*0.9995)
-                post_message(myToken,"#eth", "ETH buy : " +str(sell_result))
+                post_message(myToken,"#eth", "ETH sell : " +str(sell_result))
         time.sleep(1)
     except Exception as e:
         print(e)
