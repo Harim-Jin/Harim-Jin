@@ -72,7 +72,7 @@ while True:
                     post_message(myToken,"#bit", "BTC buy : " +str(buy_result))
         else:
             btc = get_balance("BTC")
-            if btc > 0.00008:
+            if btc > 0.000073:
                 sell_result = upbit.sell_market_order("KRW-BTC", btc*0.9995)
                 post_message(myToken,"#bit", "BTC buy : " +str(sell_result))
         time.sleep(1)
