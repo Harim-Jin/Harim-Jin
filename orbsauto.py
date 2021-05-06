@@ -75,9 +75,7 @@ while True:
                     post_message(myToken,"#jcoin", "ORBS buy : " +str(buy_result))
         else:
             orbs = get_balance("ORBS")
-            currnt_price = get_current_price("KWR-ORBS")
-            avg = upbit.upbit.avg_buy_price("KWR-ORBS)
-            if orbs > 33.0 or avg + (avg*0.2) < current_price:
+                if orbs > 33.0:
                 sell_result = upbit.sell_market_order("KRW-ORBS", orbs*0.9995)
                 post_message(myToken,"#jcoin", "ORBS sell : " +str(sell_result))
         time.sleep(1)
