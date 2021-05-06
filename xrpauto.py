@@ -71,14 +71,14 @@ while True:
                 krw = get_balance("XRP")
                 if krw > 5000:
                     buy_result = upbit.buy_market_order("KRW-XRP", ( krw*0.9995)*0.25)
-                    post_message(myToken,"#bit", "XRP buy : " +str(buy_result))
+                    post_message(myToken,"#jcoin", "XRP buy : " +str(buy_result))
         else:
             xrp = get_balance("XRP")
             currnt_price = get_current_price("KWR-XRP")
             avg = upbit.avg_buy_price("KWR-XRP")
                 if xrp > 0.000073 or avg + (avg*0.2) < current_price:
                     sell_result = upbit.sell_market_order("KRW-XRP", xrp*0.9995)
-                    post_message(myToken,"#bit", "XRP sell : " +str(sell_result))
+                    post_message(myToken,"#jcoin", "XRP sell : " +str(sell_result))
         time.sleep(1)             
 
     except Exception as e:
