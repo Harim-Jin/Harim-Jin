@@ -55,7 +55,7 @@ def get_current_price(ticker):
 upbit = pyupbit.Upbit(access, secret)
 print("autotrade start")
 # 시작 메세지 슬랙 전송
-post_message((myToken,"#eth", "이더리움 자동매매 시작!")
+post_message(myToken,"#eth", "이더리움 자동매매 시작!")
 
 
 while True:
@@ -77,7 +77,7 @@ while True:
             eth = get_balance("ETH")
             currnt_price = get_current_price("KWR-ETH")
             avg = upbit.avg_buy_price("KWR-ETH")
-                if eth > 0.0012 or avg + (avg*0.2) < current_price:
+                if eth > 0.0012:
                     sell_result = upbit.sell_market_order("KRW-ETH", eth*0.9995)
                     post_message(myToken,"#eth", "ETH sell : " +str(sell_result))
         time.sleep(1)             
