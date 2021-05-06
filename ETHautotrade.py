@@ -82,28 +82,6 @@ while True:
                     post_message(myToken,"#eth", "ETH sell : " +str(sell_result))
         time.sleep(1)             
 
-while True:
-    try:
-        now = datetime.datetime.now()
-        start_time = get_start_time("KRW-ETH")
-        end_time = start_time + datetime.timedelta(days=1)
-
-        if start_time < now < end_time - datetime.timedelta(seconds=10):
-            target_price = get_target_price("KRW-ETH", 0.65)
-            ma15 = get_ma15("KRW-ETH")
-            current_price = get_current_price("KRW-ETH")
-            if target_price < current_price and ma15 < current_price:
-                krw = get_balance("KRW")
-                if krw > 5000:
-                    buy_result = upbit.buy_market_order("KRW-ETH", krw*0.9995)
-                    post_message(myToken,"#eth", "ETH buy : " +str(buy_result))
-        else:
-            eth = get_balance("ETH")
-            avg = upbit.upbit.avg_buy_price("KWR-ETH)
-            if ETH > 0.002 or avg + (avg*0.2) < current_price:
-                sell_result = upbit.sell_market_order("KRW-ETH", eth*0.9995)
-                post_message(myToken,"#eth", "ETH sell : " +str(sell_result))
-        time.sleep(1)
     except Exception as e:
         print(e)
         post_message(myToken,"#eth", "Error")
