@@ -77,7 +77,7 @@ while True:
             currnt_price = get_current_price("KWR-XRP")
             avg = upbit.avg_buy_price("KWR-XRP")
                 if xrp > 0.000073 or avg + (avg*0.2) < current_price:
-                    sell_result = upbit.sell_market_order("KRW-XRP", btc*0.9995)
+                    sell_result = upbit.sell_market_order("KRW-XRP", xrp*0.9995)
                     post_message(myToken,"#bit", "XRP sell : " +str(sell_result))
         time.sleep(1)             
 
