@@ -4,9 +4,9 @@ import datetime
 import requests
 import json
 
-access = "your-access"
-secret = "your-secret"
-myToken = "xoxb-your-token"
+access = "go2Bjby3VE4tXv06MLNp9uyn1i9xxFxmtMU7kTYT"
+secret = "QA8XqaxJKPtgDdgLBIeFSbQfX3tkPMiogqvYmh1n"
+myToken = ""
 
 def post_message(token, channel, text):
     """슬랙 메시지 전송"""
@@ -51,7 +51,7 @@ def get_current_price(ticker):
 upbit = pyupbit.Upbit(access, secret)
 print("autotrade start")
 # 시작 메세지 슬랙 전송
-post_message(myToken,"#jcoin", "리플 자동매매 시작")
+post_message(myToken,"#jcoin", "XRP 자동매매 시작!")
 
 while True:
     try:
@@ -60,7 +60,7 @@ while True:
         end_time = start_time + datetime.timedelta(days=1)
 
         if start_time < now < end_time - datetime.timedelta(seconds=10):
-            target_price = get_target_price("KRW-XRP", 0.4)
+            target_price = get_target_price("KRW-XRP", 0.45)
             ma15 = get_ma15("KRW-XRP")
             current_price = get_current_price("KRW-XRP")
             if target_price < current_price and ma15 < current_price:
@@ -70,16 +70,11 @@ while True:
                     post_message(myToken,"#jcoin", "XRP buy : " +str(buy_result))
         else:
             xrp = get_balance("XRP")
-            currnt_price = get_current_price("KWR-XRP")
-            avg = upbit.avg_buy_price("KWR-XRP")
-            if xrp > 2.49:
+            if xrp > 0.032:
                 sell_result = upbit.sell_market_order("KRW-XRP", xrp*0.9995)
                 post_message(myToken,"#jcoin", "XRP sell : " +str(sell_result))
-            if avg + (avg*0.2) < current_price:
-                sell_result = upbit.sell_market_order("KRW-XRP", xrp*0.9995)
-                post_message(myToken,"#jcoin", "XRP sell : " +str(sell_result))            
         time.sleep(1)
     except Exception as e:
         print(e)
-        post_message(myToken,"#jcoin", e)
+        post_message(myToken,"#jcoin", "XRP Error")
         time.sleep(1)
