@@ -7,8 +7,6 @@ import json
 access = "go2Bjby3VE4tXv06MLNp9uyn1i9xxFxmtMU7kTYT"
 secret = "QA8XqaxJKPtgDdgLBIeFSbQfX3tkPMiogqvYmh1n"
 myToken = ""
-slack_webhook_url = "https://hooks.slack.com/services/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"
-
 
 def post_message(token, channel, text):
     """슬랙 메시지 전송"""
@@ -53,7 +51,7 @@ def get_current_price(ticker):
 upbit = pyupbit.Upbit(access, secret)
 print("autotrade start")
 # 시작 메세지 슬랙 전송
-post_message(myToken,"#bit", "비트코인 자동매매 시작 :)")
+post_message(myToken,"#btc", "coin 자동매매 시작!")
 
 while True:
     try:
@@ -69,14 +67,14 @@ while True:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     buy_result = upbit.buy_market_order("KRW-BTC", krw*0.9995)
-                    post_message(myToken,"#bit", "BTC buy : " +str(buy_result))
+                    post_message(myToken,"#btc", "BTC buy : " +str(buy_result))
         else:
             btc = get_balance("BTC")
-            if btc > 0.000073:
+            if btc > 0.000075:
                 sell_result = upbit.sell_market_order("KRW-BTC", btc*0.9995)
-                post_message(myToken,"#bit", "BTC buy : " +str(sell_result))
+                post_message(myToken,"#btc", "BTC sell : " +str(sell_result))
         time.sleep(1)
     except Exception as e:
         print(e)
-        post_message(myToken,"#bit", "BTC Error")
+        post_message(myToken,"#btc", "BTC Error")
         time.sleep(1)
