@@ -4,12 +4,9 @@ import datetime
 import requests
 import json
 
-
 access = "go2Bjby3VE4tXv06MLNp9uyn1i9xxFxmtMU7kTYT"
 secret = "QA8XqaxJKPtgDdgLBIeFSbQfX3tkPMiogqvYmh1n"
 myToken = ""
-slack_webhook_url = "https://hooks.slack.com/services/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"
-
 
 def post_message(token, channel, text):
     """슬랙 메시지 전송"""
@@ -17,8 +14,7 @@ def post_message(token, channel, text):
         headers={"Authorization": "Bearer "+token},
         data={"channel": channel,"text": text}
     )
-    
-    
+
 def get_target_price(ticker, k):
     """변동성 돌파 전략으로 매수 목표가 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
@@ -55,8 +51,7 @@ def get_current_price(ticker):
 upbit = pyupbit.Upbit(access, secret)
 print("autotrade start")
 # 시작 메세지 슬랙 전송
-post_message(myToken,"#eth", "이더리움 자동매매 시작!")
-
+post_message(myToken,"#eth", "ETH 자동매매 시작!")
 
 while True:
     try:
@@ -65,24 +60,21 @@ while True:
         end_time = start_time + datetime.timedelta(days=1)
 
         if start_time < now < end_time - datetime.timedelta(seconds=10):
-            target_price = get_target_price("KRW-ETH", 0.4)
+            target_price = get_target_price("KRW-ETH", 0.45)
             ma15 = get_ma15("KRW-ETH")
             current_price = get_current_price("KRW-ETH")
             if target_price < current_price and ma15 < current_price:
-                krw = get_balance("ETH")
+                krw = get_balance("KRW")
                 if krw > 5000:
-                    buy_result = upbit.buy_market_order("KRW-ETH", ( krw*0.9995)*0.25)
+                    buy_result = upbit.buy_market_order("KRW-ETH", krw*0.9995)
                     post_message(myToken,"#eth", "ETH buy : " +str(buy_result))
         else:
             eth = get_balance("ETH")
-            currnt_price = get_current_price("KWR-ETH")
-            avg = upbit.avg_buy_price("KWR-ETH")
-                if eth > 0.0012:
-                    sell_result = upbit.sell_market_order("KRW-ETH", eth*0.9995)
-                    post_message(myToken,"#eth", "ETH sell : " +str(sell_result))
-        time.sleep(1)             
-
+            if eth > 0.0012:
+                sell_result = upbit.sell_market_order("KRW-ETH", eth*0.9995)
+                post_message(myToken,"#eth", "ETH sell : " +str(sell_result))
+        time.sleep(1)
     except Exception as e:
         print(e)
-        post_message(myToken,"#eth", "Error")
+        post_message(myToken,"#eth", "ETH Error")
         time.sleep(1)
