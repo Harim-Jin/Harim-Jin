@@ -55,31 +55,31 @@ def get_current_price(ticker):
 upbit = pyupbit.Upbit(access, secret)
 print("autotrade start")
 # 시작 메세지 슬랙 전송
-post_message(myToken,"#jcoin", "오브스 자동매매 시작!")
+post_message(myToken,"#btc", "BCH 자동매매 시작!")
 
 
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-ORBS")
+        start_time = get_start_time("KRW-BCH")
         end_time = start_time + datetime.timedelta(days=1)
 
         if start_time < now < end_time - datetime.timedelta(seconds=10):
-            target_price = get_target_price("KRW-ORBS", 0.4)
-            ma15 = get_ma15("KRW-ORBS")
-            current_price = get_current_price("KRW-ORBS")
+            target_price = get_target_price("KRW-BCH", 0.4)
+            ma15 = get_ma15("KRW-BCH")
+            current_price = get_current_price("KRW-BCH")
             if target_price < current_price and ma15 < current_price:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    buy_result = upbit.buy_market_order("KRW-ORBS", (krw*0.9995)*0.25)
-                    post_message(myToken,"#jcoin", "ORBS buy : " +str(buy_result))
+                    buy_result = upbit.buy_market_order("KRW-BCH", krw*0.9995)
+                    post_message(myToken,"#btc", "BCH buy : " +str(buy_result))
         else:
-            orbs = get_balance("ORBS")
-                if orbs > 33.0:
-                sell_result = upbit.sell_market_order("KRW-ORBS", orbs*0.9995)
-                post_message(myToken,"#jcoin", "ORBS sell : " +str(sell_result))
+            bch = get_balance("BCH")
+                if bch > 0.003:
+                sell_result = upbit.sell_market_order("KRW-BCH", bch*0.9995)
+                post_message(myToken,"#btc", "BCH sell : " +str(sell_result))
         time.sleep(1)
     except Exception as e:
         print(e)
-        post_message(myToken,"#jcoin", "ORBS Error")
+        post_message(myToken,"#btc", "BCH Error")
         time.sleep(1)
