@@ -62,7 +62,7 @@ while True:
         end_time = start_time + datetime.timedelta(days=1)
 
         if start_time < now < end_time - datetime.timedelta(seconds=10):
-            target_price = get_target_price("KRW-ETC", 0.45)
+            target_price = get_target_price("KRW-ETC", 0.4)
             ma15 = get_ma15("KRW-ETC")
             current_price = get_current_price("KRW-ETC")
             if target_price < current_price and ma15 < current_price:
