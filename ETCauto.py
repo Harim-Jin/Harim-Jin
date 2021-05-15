@@ -72,7 +72,7 @@ while True:
                     post_message(myToken,"#eth", "ETC buy : " +str(buy_result))
         else:
             etc = get_balance("ETC")
-            if etc > 0.032:
+            if etc > 0.035:
                 sell_result = upbit.sell_market_order("KRW-ETC", etc*0.9995)
                 post_message(myToken,"#eth", "ETC sell : " +str(sell_result))
         time.sleep(1)
