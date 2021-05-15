@@ -78,7 +78,7 @@ while True:
                     post_message(myToken,"#btc", "BCH buy : " +str(buy_result))
         else:
             bch = get_balance("BCH")
-                if bch > 0.003:
+                if bch > 0.0032:
                 sell_result = upbit.sell_market_order("KRW-BCH", bch*0.9995)
                 post_message(myToken,"#btc", "BCH sell : " +str(sell_result))
         time.sleep(1)
